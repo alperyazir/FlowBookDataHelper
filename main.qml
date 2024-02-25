@@ -6,7 +6,7 @@ import QtQuick.Dialogs
 ApplicationWindow  {
     visibility: Window.Maximized
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Flow Book Data Helper")
     Shortcut {
         sequence: StandardKey.Open
         onActivated: {
@@ -33,7 +33,6 @@ ApplicationWindow  {
             id: fileDialog
             title: "Open File"
             nameFilters: ["All Files (*)"]
-            currentFolder: "file:///D:/Qt/FlowBook/FlowBook/build-FlowBook-Desktop_Qt_6_6_1_MinGW_64_bit-Debug/build/debug/books"
 
             onAccepted: {
                 // Handle accepted file
@@ -208,7 +207,7 @@ ApplicationWindow  {
                         total += "}"
                     }
                     else if(activityBox.currentText === "circle") {
-                        total += "\"type\":\"fillpicture\","
+                        total += "\"type\":\"circle\","
                         var sectionPath = fileDialog.selectedFile.toString();
                         var index =  sectionPath.indexOf("books")
                         sectionPath = sectionPath.substring(index)
@@ -356,8 +355,16 @@ ApplicationWindow  {
                                 total += ","
                             }
                         } else if (comboBox.currentText === "Sound"){
+
+                            var sectionPath = fileDialog.selectedFile.toString();
+                            var index =  sectionPath.indexOf("books")
+                            sectionPath = sectionPath.substring(index)
+                            var pathParts = sectionPath.split('/')
+
+                            var bookName = pathParts[1]
+
                             total += "\"type\": \"audio\","
-                            total += "\"audio_path\":\"./books/SCHACHMATT1KB/audio/"+root.rects[i].text + ".mp3\","
+                            total += "\"audio_path\":\"./books/ " + bookName+ "/audio/"+root.rects[i].text + ".mp3\","
 
                             total += "\"coords\":{"
                             total += "\"x\":" + originalX + ","

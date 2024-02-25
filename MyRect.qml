@@ -44,22 +44,6 @@ Rectangle {
         }
     }
 
-    Rectangle {
-        id: close
-        width: 10
-        height: 10
-        radius: height/2
-        color: "black"
-        anchors.top: parent.top
-        anchors.right: parent.right
-
-        MouseArea {
-            anchors.fill: parent
-            onDoubleClicked: {
-                root.destroy()
-            }
-        }
-    }
 
     TextArea {
         id: textInput
